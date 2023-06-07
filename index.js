@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+var cors = require('cors');
+
 const request = require('request')
 
 app.use((req, res, next) => {
@@ -8,9 +10,17 @@ app.use((req, res, next) => {
   next()
 })
 
+//cors
+app.use(cors({
+  origin:"*"
+}))
+
+
 app.get('/', (req, res)=>{
     res.send('Hello World')
 })
+
+
 
 app.get('/cors', (req, res) => {
   request(
